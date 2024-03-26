@@ -1122,7 +1122,7 @@ class UpSet:
         self._reorient(fig).align_ylabels(
             [out[plot["id"]] for plot in self._subset_plots]
         )
-        return out
+        return out, fig
 
     PLOT_TYPES = {
         "catplot": _plot_catplot,
@@ -1155,4 +1155,5 @@ def plot(data, fig=None, **kwargs):
     subplots : dict of matplotlib.axes.Axes
         Keys are 'matrix', 'intersections', 'totals', 'shading'
     """
-    return UpSet(data, **kwargs).plot(fig)
+    out, fig = UpSet(data, **kwargs).plot(fig)
+    return fig
